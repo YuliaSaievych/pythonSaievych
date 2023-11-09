@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вибір техніки</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #D9B8D7;
+            color: #012626;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        form {
+            background-color: #BF88BC;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px; /* Змінено ширину форми */
+        }
+
+        label {
+            font-weight: bold;
+            color: #3d2e19; /* Змінено колір тексту міток */
+        }
+
+        input, select {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #A660A1;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #012626;
+        }
+    </style>
+</head>
+<body>
+    <h2>Виберіть улюблену техніку та колір:</h2>
+    <form method="post" action="form.py">
+        <label for="vehicle">Техніка:</label><br>
+        <input type="radio" name="vehicle" value="car"> Автомобіль<br>
+        <input type="radio" name="vehicle" value="motorcycle"> Мотоцикл<br>
+        <input type="radio" name="vehicle" value="bike"> Велосипед<br><br>
+
+        <label for="color">Колір:</label><br>
+        <select name="color">
+            <option value="red">Червоний</option>
+            <option value="blue">Синій</option>
+            <option value="green">Зелений</option>
+        </select><br><br>
+
+        <input type="submit" value="Відправити">
+    </form>
+</body>
+</html>
