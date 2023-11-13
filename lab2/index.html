@@ -2,78 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вибір техніки</title>
+    <title>CGI Form</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #D9B8D7;
-            color: #012626;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-        }
-
-        h2 {
-            margin-top: 0;
+            height: 100vh;
+            margin: 0;
         }
 
         form {
-            background-color: #BF88BC;
+            width: 300px;
             padding: 20px;
-            border-radius: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 300px; /* Змінено ширину форми */
         }
 
         label {
-            font-weight: bold;
-            color: #3d2e19; /* Змінено колір тексту міток */
+            display: block;
+            margin-bottom: 10px;
         }
 
         input, select {
-            margin-bottom: 10px;
             width: 100%;
             padding: 8px;
+            margin-bottom: 15px;
             box-sizing: border-box;
         }
 
         input[type="submit"] {
-            background-color: #A660A1;
+            background-color: #4caf50;
             color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
             cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #012626;
         }
     </style>
 </head>
 <body>
-    <h2>Виберіть улюблену техніку та колір:</h2>
-<form method="post" action="form.py">
-        <label for="vehicle">Техніка:</label><br>
-        <input type="radio" name="vehicle" value="car"> Автомобіль<br>
-        <input type="radio" name="vehicle" value="motorcycle"> Мотоцикл<br>
-        <input type="radio" name="vehicle" value="bike"> Велосипед<br><br>
+    <form method="post" action="form.cgi">
+        <h2>Submit the Form</h2>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
 
-        <label for="color">Колір:</label><br>
-        <select name="color">
-            <option value="red">Червоний</option>
-            <option value="blue">Синій</option>
-            <option value="green">Зелений</option>
-        </select><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-        <input type="submit" value="Відправити">
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male"> Male
+        <input type="radio" id="female" name="gender" value="female"> Female
+
+        <label for="interests">Interests:</label>
+        <input type="checkbox" id="programming" name="interests" value="programming"> Programming
+        <input type="checkbox" id="travel" name="interests" value="travel"> Travel
+
+        <label for="country">Country:</label>
+        <select id="country" name="country">
+            <option value="us">United States</option>
+            <option value="ca">Canada</option>
+            <option value="uk">United Kingdom</option>
+            <option value="uk">Ukraine</option>
+        </select>
+
+        <input type="submit" value="Submit">
     </form>
 </body>
-</html
+</html>
