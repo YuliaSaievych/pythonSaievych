@@ -7,7 +7,16 @@ import cgi
 cgi.cgitb.enable()
 
 # Get form data
+# Python CGI example for handling POST requests
+import cgi
+
 form = cgi.FieldStorage()
+if "name" in form:
+    print("Content-type: text/html\n")
+    print("<html><body>")
+    print("<h2>Hello, {}!</h2>".format(form.getvalue("name")))
+    print("</body></html>")
+
 
 # Set the content type to HTML
 print("Content-type: text/html\n")
