@@ -7,6 +7,9 @@ print("Content-type: text/html\n")
 # Отримуємо дані з форми
 form = cgi.FieldStorage()
 
+chmod +x form.py
+
+
 # Функція для виведення результатів
 def print_results(vehicle, color):
     print("<html>")
