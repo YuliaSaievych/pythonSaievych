@@ -2,68 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CGI Form</title>
+    <title>CGI Form Example</title>
     <style>
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            margin: 0;
         }
 
         form {
-            width: 300px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px; /* Adjusted border-radius for the form */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
         }
 
         label {
             display: block;
             margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
         }
 
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
+        input,
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
             box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px; /* Adjusted border-radius for input and select */
+            font-size: 16px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 5px;
+            vertical-align: middle;
         }
 
         input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
+            background-color: #3abbc2;
+            color: #fff;
             cursor: pointer;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px; /* Adjusted border-radius for the submit button */
+            transition: background-color 0.3s ease;
         }
-    </style>
+
+        input[type="submit"]:hover {
+            background-color: #20169a;
+        }
+
+        select {
+            appearance: none;
+        }
+
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #20169a;
+            border: 1px solid #3abbc2;
+            color: #fff;
+        }
+
+        input[type="radio"] {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+        }
+
+        input[type="radio"]:checked {
+            background-color: #20169a;
+            border: 1px solid #3abbc2;
+            color: #fff;
+        }
+
+            </style>
 </head>
 <body>
-    <form method="post" action="pythonSaievych/lab2/form.cgi">
-        <h2>Submit the Form</h2>
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+    <form action="form_processing.cgi" method="post">
+        <label for="name">Ім'я:</label>
+        <input type="text" name="name" id="name" required>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email">Електронна адреса:</label>
+        <input type="text" name="email" id="email" required>
 
-        <label for="gender">Gender:</label>
-        <input type="radio" id="male" name="gender" value="male"> Male
-        <input type="radio" id="female" name="gender" value="female"> Female
+        <label>Gender:</label>
+        <input type="radio" name="gender" value="male"> Чоловік
+        <input type="radio" name="gender" value="female"> Жінка
 
-        <label for="interests">Interests:</label>
-        <input type="checkbox" id="programming" name="interests" value="programming"> Programming
-        <input type="checkbox" id="travel" name="interests" value="travel"> Travel
-
-        <label for="country">Country:</label>
-        <select id="country" name="country">
-            <option value="us">United States</option>
-            <option value="ca">Canada</option>
-            <option value="uk">United Kingdom</option>
-            <option value="uk">Ukraine</option>
-        </select> 
+        <label for="role">Ваша роль в університеті:</label>
+        <select name="role" id="role">
+            <option value="stud">Студент</option>
+            <option value="prof">Викладач</option>
+            <option value="tech">Технічний працівник</option>
+        </select>
 
         <input type="submit" value="Submit">
     </form>
