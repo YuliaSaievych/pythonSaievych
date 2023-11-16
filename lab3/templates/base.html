@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <title>{% block title %}My Portfolio{% endblock %}</title>
 </head>
@@ -11,9 +12,10 @@
         <h1>My Portfolio</h1>
         <nav>
             <ul>
-                <li><a href="{{ url_for('page1') }}">Page 1</a></li>
-                <li><a href="{{ url_for('page2') }}">Page 2</a></li>
-                <li><a href="{{ url_for('page3') }}">Page 3</a></li>
+                <li><a href="{{ url_for('home') }}">Головна</a></li>
+                <li><a href="{{ url_for('page1') }}">Сторінка 1</a></li>
+                <li><a href="{{ url_for('page2') }}">Сторінка 2</a></li>
+                <li><a href="{{ url_for('page3') }}">Сторінка 3</a></li>
             </ul>
         </nav>
     </header>
@@ -22,8 +24,9 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2023 My Portfolio. All rights reserved.</p>
-    </footer>
+    <!-- Include Bootstrap JS if needed -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+    <!-- Include your custom scripts -->
+    <script src="{{ url_for('static', filename='js/your_custom_script.js') }}"></script>
 </body>
 </html>
