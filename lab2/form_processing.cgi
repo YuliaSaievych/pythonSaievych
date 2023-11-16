@@ -14,8 +14,7 @@ print $cgi->header('text/html');
 my $name    = $cgi->param('name');
 my $email   = $cgi->param('email');
 my $gender  = $cgi->param('gender');
-my $color   = $cgi->param('color');
-my @interests = $cgi->param('interests');
+my $role   = $cgi->param('role');
 
 # Print the HTML response
 print <<HTML;
@@ -30,8 +29,8 @@ print <<HTML;
     <p>Name: $name</p>
     <p>Email: $email</p>
     <p>Gender: $gender</p>
-    <p>Favorite Color: $color</p>
-    <p>Interests: @{[join(', ', @interests)]}</p>
+    <p>Role: $role</p>
 </body>
 </html>
 HTML
+
