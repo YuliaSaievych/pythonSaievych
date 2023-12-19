@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discipline Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        form button {
+            background-color: #4aa6b6;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4AA6B6FF;
+            color: white;
+        }
+
+        button {
+            background-color: #4AA6B6FF;
+            color: white;
+            padding: 6px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Discipline Management</h1>
+
+        <form id="createDisciplineForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+
+            <label for="credits">Credits:</label>
+            <input type="number" id="credits" required>
+
+            <label for="level">Level:</label>
+            <input type="text" id="level" required>
+
+            <button type="button" onclick="createDiscipline()">Create Discipline</button>
+        </form>
+
+        <table id="disciplineTable">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Credits</th>
+                    <th>Level</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        // Function to make a GET request to retrieve disciplines and update the table
+        function getDisciplines() {
+            $.ajax({
+                url: '/disciplines',
+                method: 'GET',
+                success: function (data) {
+                    updateTable(data);
+                }
+            });
+        }
+
+        // Function to update the table with discipline data
+        function updateTable(disciplines) {
+            var tableBody = $('#disciplineTable tbody');
+            tableBody.empty();
+
+            for (var i = 0; i < disciplines.length; i++) {
+                var row = $('<tr>');
+                row.append($('<td>').text(disciplines[i].id));
+                row.append($('<td>').text(disciplines[i].name));
+                row.append($('<td>').text(disciplines[i].credits));
+                row.append($('<td>').text(disciplines[i].level));
+                row.append($('<td>').html('<button onclick="deleteDiscipline(' + disciplines[i].id + ')">Delete</button>'));
+                tableBody.append(row);
+            }
+        }
+
+        // Function to make a POST request to create a new discipline
+        function createDiscipline() {
+            var name = $('#name').val();
+            var credits = $('#credits').val();
+            var level = $('#level').val();
+
+            $.ajax({
+                url: '/disciplines',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ "name": name, "credits": credits, "level": level }),
+                success: function () {
+                    getDisciplines(); // Refresh the table after creating a new discipline
+                }
+            });
+        }
+
+        // Function to make a DELETE request to delete a discipline
+        function deleteDiscipline(disciplineId) {
+            $.ajax({
+                url: '/disciplines/' + disciplineId,
+                method: 'DELETE',
+                success: function () {
+                    getDisciplines(); // Refresh the table after deleting a discipline
+                }
+            });
+        }
+
+        // Load disciplines when the page is ready
+        $(document).ready(function () {
+            getDisciplines();
+        });
+    </script>
+</body>
+</html>
